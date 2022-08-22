@@ -16,7 +16,7 @@ app_secret = os.environ["APP_SECRET"]
 
 user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
-
+user = os.environ["USER"]
 
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
@@ -56,5 +56,5 @@ wm = WeChatMessage(client)
 wea, temperature = get_weather()
 wd, wind = get_wind()
 data = {"weather":{"value":wea},"wind":{"value":wd},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
-res = wm.send_template(user_id, template_id, data)
+res = wm.send_template(user_id,user, template_id, data)
 print(res)
